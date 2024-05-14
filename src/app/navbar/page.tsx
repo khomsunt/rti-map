@@ -7,9 +7,10 @@ const Navbar = () => {
             <div className=" text-white flex justify-center">
                 <div>Log</div>
                 <div>
-                    <Link className='p-2' href="/">Home</Link>
-                    <Link className='p-2' href="/about">About</Link>
-                    <Link className='p-2' href="/map">Map</Link>
+                    <Link className='p-3' href="/">Home</Link>
+                    <Link className='p-3' href="/about">About</Link>
+                    <Link className='p-3' href="/map">Map</Link>
+
                 </div>
             </div>
 
