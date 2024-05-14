@@ -1,7 +1,7 @@
 /* components/Navbar.module.css */
 .navbar {
   background-color: #1D4ED8;
-  padding: 10px 20px;
+  padding: 10px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,19 +45,29 @@
   border-radius: 5px;
 }
 
+.wrapSubmenu{
+  margin: 10px;
+  background-color: red;
+}
+
 .submenu {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #444;
+  background-color: #fff;
   list-style: none;
   padding: 10px 0;
-  margin: 0;
+  margin-top: 0px;
   display: none;
   z-index: 1000;
+  white-space: nowrap;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
-.navItem:hover .submenu,
+.navItem:hover .wrapSubmenu .submenu,
+.navLink:hover .wrapSubmenu,
 .navItem.active .submenu {
   display: block;
 }
@@ -67,12 +77,13 @@
 }
 
 .submenuItem a {
-  color: white;
+  color: blue;
   text-decoration: none;
+  margin: 5px 5px;
 }
 
-.submenuItem a:hover {
-  background-color: #555;
+.submenuItem:hover {
+  background-color: lightblue;
 }
 
 @media (max-width: 768px) {

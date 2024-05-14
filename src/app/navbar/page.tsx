@@ -39,6 +39,7 @@ const Navbar = () => {
                 >
                     <a className={styles.navLink}>Services</a>
                     {isSubmenuOpen && (
+                        <div className={styles.wrapSubmenu}>
                         <ul className={styles.submenu}>
                             <li className={styles.submenuItem}>
                                 <Link href="/web-development">Web Development</Link>
@@ -50,6 +51,7 @@ const Navbar = () => {
                                 <Link href="/marketing">Marketing</Link>
                             </li>
                         </ul>
+                        </div>
                     )}
                 </li>
                 <li className={styles.navLink}>
