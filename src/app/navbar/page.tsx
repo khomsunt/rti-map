@@ -1,20 +1,66 @@
-import React from 'react'
-import Link from 'next/link'
+// components/Navbar.js
+"use client"
+import { useState } from 'react';
+import Link from 'next/link';
+import styles from './navbar.module.css';
 
 const Navbar = () => {
+    const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleSubmenu = () => {
+        setIsSubmenuOpen(!isSubmenuOpen);
+    };
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
     return (
-        <nav className='h-12 bg-blue-700'>
-            <div className=" text-white flex justify-between pt-3 px-5">
-                <div>Logo</div>
-                <div className='space-x-2'>
-                    <Link className='p-1 px-2 hover:bg-white hover:text-blue-700 rounded-lg' href="/">Home</Link>
-                    <Link className='p-1 px-2 hover:bg-white hover:text-blue-700 rounded-lg' href="/about">About</Link>
-                    <Link className='p-1 px-2 hover:bg-white hover:text-blue-700 rounded-lg' href="/map">Map</Link>
-                </div>
+        <nav className={styles.navbar}>
+            <div className={styles.logo}>
+                <Link href="/">MyLogo</Link>
             </div>
-
+            <div className={styles.menuIcon} onClick={toggleMenu}>
+                ☰
+            </div>
+            <ul className={`${styles.navItems} ${isMenuOpen ? styles.active : ''}`}>
+                <li className={styles.navLink}>
+                    <Link href="/">Home</Link>
+                </li>
+                <li className={styles.navLink}>
+                    <Link href="/map">Map</Link>
+                </li>
+                <li
+                    className={styles.navItem}
+                    onMouseEnter={toggleSubmenu}
+                    onMouseLeave={toggleSubmenu}
+                    onClick={toggleSubmenu}
+                >
+                    <a className={styles.navLink}>Services</a>
+                    {isSubmenuOpen && (
+                        <ul className={styles.submenu}>
+                            <li className={styles.submenuItem}>
+                                <Link href="/web-development">Web Development</Link>
+                            </li>
+                            <li className={styles.submenuItem}>
+                                <Link href="/seo">SEO</Link>
+                            </li>
+                            <li className={styles.submenuItem}>
+                                <Link href="/marketing">Marketing</Link>
+                            </li>
+                        </ul>
+                    )}
+                </li>
+                <li className={styles.navLink}>
+                    <Link href="/about">About</Link>
+                </li>
+                <li className={styles.navLink}>
+                    <Link href="/contact">Contact</Link>
+                </li>
+            </ul>
         </nav>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;
