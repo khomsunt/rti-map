@@ -2,7 +2,7 @@ import React from 'react'
 
 const About = () => {
   return (
-    <div className="h-screen">
+    <div className="mb-16">
       <div className="hero-content flex-col lg:flex-row">
         <img src="https://get.wallhere.com/photo/nature-landscape-1429571.jpg" className="shadow-2xl" />
         <h1 className='text-6xl font-bold mt-10 ml-16 text-shadow-custom'>เกี่ยวกับเรา</h1>
