@@ -31,15 +31,15 @@ const About = () => {
           </div>
           <div>
             <p className='text-2xl font-meduim mt-16 ml-40'>ปราสาทหินพนมรุ้ง จังหวัดบุรีรัมย์</p>
-            <img src="https://content.skyscnr.com/m/0ac8713d45830d9e/original/GettyImages-485805928.jpg?resize=1800px:1800px&quality=100" className="shadow-2xl w-3/5 ml-36 mt-5" />
+            <img src="https://content.skyscnr.com/m/0ac8713d45830d9e/original/GettyImages-485805928.jpg?resize=1800px:1800px&quality=100" className="shadow-2xl w-3/5 ml-36 mt-5 rounded-lg" />
           </div>
           <div>
             <p className='text-2xl font-meduim mt-16 ml-40'>ปราสาทหินพิมาย จังหวัดนครราชสีมา</p>
-            <img src="https://content.skyscnr.com/m/622adfce027cb90a/original/GettyImages-513780733_doc.jpg?resize=1800px:1800px&quality=100" className="shadow-2xl w-3/5 ml-36 mt-5" />
+            <img src="https://content.skyscnr.com/m/622adfce027cb90a/original/GettyImages-513780733_doc.jpg?resize=1800px:1800px&quality=100" className="shadow-2xl w-3/5 ml-36 mt-5 rounded-lg" />
           </div>
           <div>
             <p className='text-2xl font-meduim mt-16 ml-40'>วัดพระธาตุพนมวรมหาวิหาร จังหวัดนครพนม</p>
-            <img src="https://www.agilenttours.com/uploads/img_tour/691.jpg" className="shadow-2xl w-3/5 ml-36 mt-5" />
+            <img src="https://www.agilenttours.com/uploads/img_tour/691.jpg" className="shadow-2xl w-3/5 ml-36 mt-5 rounded-lg" />
           </div>
         </div>
       </div>
