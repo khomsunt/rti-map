@@ -5,9 +5,9 @@ const About = () => {
     <div className="mb-16">
       <div className="hero-content flex-col lg:flex-row">
         <img src="https://get.wallhere.com/photo/nature-landscape-1429571.jpg" className="shadow-2xl" />
-        <h1 className='text-6xl font-bold mt-10 ml-16 text-shadow-custom'>เกี่ยวกับเรา</h1>
-        <hr className="mx-auto w-4/5 mt-5 ml-16 border-gray-200 "></hr>
-        <p className='text-4xl mt-5 ml-16'>สถานที่ท่องเที่ยวในประเทศไทยที่น่าสนใจ</p>
+        <h1 className='text-6xl font-bold mt-10 ml-16 text-shadow-custom text-center'>เกี่ยวกับเรา</h1>
+        <hr className="mx-auto w-36 mt-5 border-gray-400"></hr>
+        <p className='text-4xl mt-10 ml-16 text-center'>สถานที่ท่องเที่ยวในประเทศไทยที่น่าสนใจ</p>
         <div className='grid grid-cols-2 gap-2'>
           <div >
             <p className='text-2xl font-meduim mt-16 ml-40'>วัดร่องขุน จังหวัดเรียงราย</p>
@@ -43,6 +43,28 @@ const About = () => {
           </div>
         </div>
       </div>
+      <form className="max-w-md  p-10 text-black rounded-lg shadow-xl mt-10">
+        <h1 className='text-center text-xl '>กรอกข้อมูล</h1>
+      <div className='border-black mt-4'>
+        <label htmlFor="username" className="block text-black text-sm font-bold mb-2">Username :</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+        />
+      </div>
+      <div className='border-black mt-4'>
+        <label htmlFor="password" className="block text-black text-sm font-bold mb-2">Password :</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+        />
+      </div>
+      <button type="submit" className="mx-auto w-28 bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 mt-10">Login</button>
+    </form>
     </div>
   )
 }
