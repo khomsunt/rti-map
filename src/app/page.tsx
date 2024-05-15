@@ -4,7 +4,7 @@ const Contact = () => {
   return (
     <div className="mb-16">
     <div className="hero-content flex-col lg:flex-row">
-      <img src="https://get.wallhere.com/photo/nature-landscape-1429571.jpg" className="shadow-2xl" />
+      <img src="https://www.pngmart.com/files/11/Earth-Travel-World-PNG-Transparent-Image.png" className="shadow-2xl w-full" />
       <h1 className='text-6xl font-bold mt-10 ml-16 text-shadow-custom text-center text-blue-700'>สถานที่ท่องเที่ยว</h1>
       <hr className="mx-auto w-36 mt-5 border-gray-400"></hr>
       <p className='text-4xl mt-10 ml-16 text-center'>ที่เที่ยวในประเทศไทยที่น่าสนใจ</p>
