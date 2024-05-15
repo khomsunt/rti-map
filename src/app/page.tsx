@@ -5,7 +5,7 @@ const Contact = () => {
     <div className="mb-16">
     <div className="hero-content flex-col lg:flex-row">
       <img src="https://get.wallhere.com/photo/nature-landscape-1429571.jpg" className="shadow-2xl" />
-      <h1 className='text-6xl font-bold mt-10 ml-16 text-shadow-custom text-center text-blue-00'>สถานที่ท่องเที่ยว</h1>
+      <h1 className='text-6xl font-bold mt-10 ml-16 text-shadow-custom text-center text-blue-700'>สถานที่ท่องเที่ยว</h1>
       <hr className="mx-auto w-36 mt-5 border-gray-400"></hr>
       <p className='text-4xl mt-10 ml-16 text-center'>ที่เที่ยวในประเทศไทยที่น่าสนใจ</p>
       <p className='text-xl mt-5 ml-auto mr-auto font-normal leading-relaxed bg-blue-100 p-6 rounded-lg max-w-7xl'>ประเทศไทยเป็นเมืองท่องเที่ยวยอดนิยม ที่นักท่องเที่ยวจากทั่วโลกอยากมาเที่ยวกันมากที่สุด จึงไม่น่าแปลกใจที่การจัดอันดับสถานที่ท่องเที่ยวต่างๆทั่วโลกมักจะมีที่เที่ยวชื่อดังในเมืองไทยติดอันดับด้วยเสมอ อีกทั้งสถานที่ท่องเที่ยวในไทยอีกหลายที่นอกจากจะติดอันดับโลกแล้ว การจัดอันดับในไทยก็ยังเป็นที่สุดอีกด้วย มีที่ไหนบ้าง มาดูกันเลยค่า</p>
@@ -44,28 +44,24 @@ const Contact = () => {
         </div>
       </div>
     </div>
-    <form className="max-w-md  p-10 text-black rounded-lg shadow-xl mt-10 bg-gray-200 ml-20">
-      <h1 className='text-center text-3xl font-bold'>Login</h1>
+    <form className="max-w-md  p-10 text-black rounded-lg shadow-xl mt-10 bg-gray-200 ml-28">
+      <h1 className='text-center text-3xl font-bold'></h1>
     <div className='border-black mt-4'>
-      <label htmlFor="username" className="block text-black text-sm font-bold mb-2">Username :</label>
+      <label className="block text-black text-sm font-bold mb-2">ชื่อ :</label>
       <input
         type="text"
-        id="username"
-        name="username"
-        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500 shadow-3xl"
       />
     </div>
     <div className='border-black mt-4'>
-      <label htmlFor="password" className="block text-black text-sm font-bold mb-2">Password :</label>
+      <label htmlFor="password" className="block text-black text-sm font-bold mb-2">นามสกุล :</label>
       <input
-        type="password"
-        id="password"
-        name="password"
+        name="text"
         className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
       />
     </div>
     <div className='text-center'>
-    <button type="submit" className="w-28 bg-blue-500 text-white font-meduim py-2 px-4 rounded-lg hover:bg-blue-700 mt-10 mx-auto">Login</button>
+    <button type="submit" className="w-28 text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-200 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 mt-5">บันทึก</button>
     </div>
   </form>
   </div>
