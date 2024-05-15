@@ -2,10 +2,30 @@ import React from 'react'
 
 const About = () => {
   return (
-    <div className="hero-content flex-col lg:flex-row">
-      <img src="https://get.wallhere.com/photo/nature-landscape-1429571.jpg" className="shadow-2xl" />
-      <h1 className='text-6xl font-bold mt-10 ml-16'>ABOUT</h1>
-      <p className='text-2xl mt-5 ml-16'>ชอบความธรรมดา ที่มีธรรมชาติล้อมรอบ</p>
+    <div className="h-screen">
+      <div className="hero-content flex-col lg:flex-row">
+        <img src="https://get.wallhere.com/photo/nature-landscape-1429571.jpg" className="shadow-2xl" />
+        <h1 className='text-6xl font-bold mt-10 ml-16 text-shadow-custom'>ABOUT</h1>
+        <p className='text-4xl mt-5 ml-16'>สถานที่ท่องเที่ยวในประเทศไทยที่น่าสนใจ</p>
+        <div className='grid grid-cols-2 gap-2'>
+          <div >
+            <p className='text-2xl font-meduim mt-16 ml-40'>วัดร่องขุน จังหวัดเรียงราย</p>
+            <img src="https://content.skyscnr.com/m/101c2e3b26827c4d/original/GettyImages-472699356.jpg?resize=1800px:1800px&quality=100" className="shadow-2xl w-3/5 ml-36 mt-5" />
+          </div>
+          <div>
+            <p className='text-2xl font-meduim mt-16 ml-40'>ดอยอินทนนท์ จังหวัดเชียงใหม่</p>
+            <img src="https://content.skyscnr.com/m/2ec86cec1dd078be/original/GettyImages-471176780.jpg?resize=1800px:1800px&quality=100" className="shadow-2xl w-3/5 ml-36 mt-5" />
+          </div>
+          <div>
+            <p className='text-2xl font-meduim mt-16 ml-40'>อุทยานประวัติศาสตร์สุโขทัย จังหวัดสุโขทัย</p>
+            <img src="https://content.skyscnr.com/m/717f37747e82db7d/original/GettyImages-477599803.jpg?resize=1800px:1800px&quality=100" className="shadow-2xl w-3/5 ml-36 mt-5" />
+          </div>
+          <div>
+            <p className='text-2xl font-meduim mt-16 ml-40'>สามพันโบก จังหวัดอุบลราชธานี</p>
+            <img src="https://content.skyscnr.com/m/5d2172e04d2c4985/original/GettyImages-482107216.jpg?resize=1800px:1800px&quality=100" className="shadow-2xl w-3/5 ml-36 mt-5" />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
