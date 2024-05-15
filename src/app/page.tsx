@@ -8,6 +8,7 @@ const Contact = () => {
       <h1 className='text-6xl font-bold mt-10 ml-16 text-shadow-custom text-center'>สถานที่ท่องเที่ยว</h1>
       <hr className="mx-auto w-36 mt-5 border-gray-400"></hr>
       <p className='text-4xl mt-10 ml-16 text-center'>ที่เที่ยวในประเทศไทยที่น่าสนใจ</p>
+      <p className='text-xl mt-5 ml-auto mr-auto font-normal leading-relaxed bg-blue-100 p-4 rounded-lg max-w-7xl'>ประเทศไทยเป็นเมืองท่องเที่ยวยอดนิยม ที่นักท่องเที่ยวจากทั่วโลกอยากมาเที่ยวกันมากที่สุด จึงไม่น่าแปลกใจที่การจัดอันดับสถานที่ท่องเที่ยวต่างๆทั่วโลกมักจะมีที่เที่ยวชื่อดังในเมืองไทยติดอันดับด้วยเสมอ อีกทั้งสถานที่ท่องเที่ยวในไทยอีกหลายที่นอกจากจะติดอันดับโลกแล้ว การจัดอันดับในไทยก็ยังเป็นที่สุดอีกด้วย มีที่ไหนบ้าง มาดูกันเลยค่า</p>
       <div className='grid grid-cols-2 gap-2'>
         <div >
           <p className='text-2xl font-meduim mt-16 ml-40'>วัดร่องขุน จังหวัดเรียงราย</p>
