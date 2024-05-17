@@ -5,7 +5,7 @@ const About = () => {
     <div className='h-screen'>
       <div className="hero min-h-screen bg-base-100 flex justify-center items-center">
         <div className="max-w-screen-lg">
-          <img src="https://cms.dmpcdn.com/travel/2023/04/14/10feb5a0-da8f-11ed-b50c-375a25fe19c4_webp_original.jpg" className="w-full rounded-lg shadow-2xl mb-8 ml-32 mt-10" style={{ maxWidth: '800px' }} />
+          <img src="https://cms.dmpcdn.com/travel/2023/04/14/10feb5a0-da8f-11ed-b50c-375a25fe19c4_webp_original.jpg" className="w-full rounded-lg shadow-2xl mb-8 ml-32 mt-20" style={{ maxWidth: '800px' }} />
           <h1 className='text-center text-4xl font-bold mb-4'>ที่เที่ยวสวยที่สุดในไทย มีที่ไหนบ้าง!! มาเช็คลิสต์กัน</h1>
           <p className='text-lg text-gray-800 leading-relaxed'>
             ในประเทศไทย บ้านเรามีที่เที่ยวเยอะแยะแบบที่ไปกันได้ทั้งปีทุกวี่ทุกวันก็ยังไม่มีหมดค่ะ 
