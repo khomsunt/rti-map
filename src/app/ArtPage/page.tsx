@@ -86,7 +86,7 @@ const About = () => {
 
   return (
     <div className="container mx-auto p-4"><br /><br /><br />
-      <h1 className="text-2xl font-bold mb-4">About</h1>
+      <h1 className="text-2xl font-bold mb-4">Aabout</h1>
       
       {isEditing ? (
         <div className="mb-4">
