@@ -26,9 +26,6 @@ const Navbar = () => {
             </div>
             <ul className={`${styles.navItems} ${isMenuOpen ? styles.active : ''}`}>
                 <li className={styles.navLink}>
-                    <Link href="/">Home</Link>
-                </li>
-                <li className={styles.navLink}>
                     <Link href="/map">Map</Link>
                 </li>
                 <li
