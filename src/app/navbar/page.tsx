@@ -57,6 +57,10 @@ const Navbar = () => {
                 <li className={styles.navLink}>
                     <Link href="/contact">Contact</Link>
                 </li>
+                <li className={styles.navLink}>
+                    <Link href="/ArtPage">ArtPage</Link>
+                </li>
+                
             </ul>
         </nav>
     );
