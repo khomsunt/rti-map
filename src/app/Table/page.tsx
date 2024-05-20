@@ -8,18 +8,18 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import Button from '@mui/material/Button';
 
 interface Column {
-  id: 'name' | 'code' | 'population' | 'size' | 'density' | 'actions';
+  id: 'name' | 'code' | 'population' | 'size' | 'density' | 'but';
   label: string;
   minWidth?: number;
   align?: 'right';
   format?: (value: number) => string;
+  color?: string;
 }
 
 const columns: readonly Column[] = [
-  { id: 'name', label: 'Name', minWidth: 170 },
+  { id: 'name', label: 'Name', minWidth: 170, color: '#FFFFFF' },
   { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
   {
     id: 'population',
@@ -42,7 +42,7 @@ const columns: readonly Column[] = [
     align: 'right',
     format: (value: number) => value.toFixed(2),
   },
-  { id: 'actions', label: 'Actions', minWidth: 170, align: 'right' },
+  { id: 'but', label: 'button', minWidth: 140, color: '#FFFFFF' },
 ];
 
 interface Data {
@@ -63,7 +63,7 @@ function createData(
   return { name, code, population, size, density };
 }
 
-const initialRows = [
+const rows = [
   createData('India', 'IN', 1324171354, 3287263),
   createData('China', 'CN', 1403500365, 9596961),
   createData('Italy', 'IT', 60483973, 301340),
@@ -82,32 +82,22 @@ const initialRows = [
 ];
 
 export default function StickyHeadTable() {
-  const [rows, setRows] = React.useState(initialRows);
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-  const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-
-  const handleDelete = (code: string) => {
-    alert(`คุณต้องการลบข้อมูลหรือไม่`);
-    setRows(rows.filter((row) => row.code !== code));
-  };
-
-  const handleEdit = (code: string) => {
-    alert(`Edit row with code : ${code}`);
-  };
-
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  
+    const handleChangePage = (event: unknown, newPage: number) => {
+      setPage(newPage);
+    };
+  
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setRowsPerPage(+event.target.value);
+      setPage(0);
+    };
+  
   return (
-    <Paper sx={{ width: '80%', overflow: 'hidden' , margin:'10%'  }}>
-      <TableContainer sx={{ maxHeight: 'calc(100vh - 190px)',overflow:'auto' }}>
-        <Table stickyHeader aria-label="sticky table ">
+    <Paper sx={{ width: '80%', overflow: 'hidden' , margin: '200px'}}>
+      <TableContainer sx={{ maxHeight: 440 }}>
+        <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               {columns.map((column) => (
@@ -116,10 +106,12 @@ export default function StickyHeadTable() {
                   align={column.align}
                   sx={{
                     minWidth: column.minWidth,
-                    backgroundColor: '#FF9999',
-                    color: column.color || '#333', // ใช้สีจากฟิลด์ color หรือสีเริ่มต้น #333
+                    backgroundColor: '#999999',
+                    color: column.color || '#FFFFFF', 
                   }}
+                  
                 >
+                    
                   {column.label}
                 </TableCell>
               ))}
@@ -135,29 +127,10 @@ export default function StickyHeadTable() {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          {column.id === 'actions' ? (
-                            <>
-                              <Button
-                                onClick={() => handleEdit(row.code)}
-                                variant="contained"
-                                color="primary"
-                                sx={{ marginRight: 1 }}
-                              >
-                                  เเก่ไข
-                              </Button>
-                              <Button
-                                onClick={() => handleDelete(row.code)}
-                                variant="contained"
-                                color="secondary"
-                              >
-                                ลบ
-                              </Button>
-                            </>
-                          ) : column.format && typeof value === 'number' ? (
-                            column.format(value)
-                          ) : (
-                            value
-                          )}
+                          {column.format && typeof value === 'number'
+                            ? column.format(value)
+                            : value}
+                            
                         </TableCell>
                       );
                     })}
