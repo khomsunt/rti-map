@@ -42,7 +42,7 @@ const columns: readonly Column[] = [
     align: 'right',
     format: (value: number) => value.toFixed(2),
   },
-  { id: 'but', label: 'button', minWidth: 140, color: '#FFFFFF' },
+  { id: 'but', label: 'button', minWidth: 140, align: 'center', color: '#FFFFFF' },
 ];
 
 interface Data {
@@ -63,6 +63,7 @@ function createData(
   return { name, code, population, size, density };
 }
 
+
 const rows = [
   createData('India', 'IN', 1324171354, 3287263),
   createData('China', 'CN', 1403500365, 9596961),
@@ -82,20 +83,31 @@ const rows = [
 ];
 
 export default function StickyHeadTable() {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  
-    const handleChangePage = (event: unknown, newPage: number) => {
-      setPage(newPage);
-    };
-  
-    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setRowsPerPage(+event.target.value);
-      setPage(0);
-    };
-  
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
+  const handleDelete = () => {
+    // โค้ดที่ใช้ในการลบข้อมูล
+    console.log('Delete data');
+  };
+
+  // ฟังก์ชันที่ใช้ในการแก้ไขข้อมูล
+  const handleEdit = () => {
+    // โค้ดที่ใช้ในการแก้ไขข้อมูล
+    console.log('Edit data');
+  };
   return (
-    <Paper sx={{ width: '80%', overflow: 'hidden' , margin: '200px'}}>
+
+    <Paper sx={{ width: '80%', overflow: 'hidden', margin: '200px' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -107,11 +119,11 @@ export default function StickyHeadTable() {
                   sx={{
                     minWidth: column.minWidth,
                     backgroundColor: '#999999',
-                    color: column.color || '#FFFFFF', 
+                    color: column.color || '#FFFFFF',
                   }}
-                  
+
                 >
-                    
+
                   {column.label}
                 </TableCell>
               ))}
@@ -127,10 +139,43 @@ export default function StickyHeadTable() {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                            
+                          {column.id === 'but' ? (
+                            <div>
+                              <button
+                                onClick={() => handleDelete()}
+                                style={{
+                                  backgroundColor: 'red',
+                                  color: 'white',
+                                  borderRadius: '20px',
+                                  padding: '8px 16px',
+                                  border: 'none',
+                                  cursor: 'pointer',
+                                  outline: 'none',
+                                  marginRight: '10px',
+                                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)'
+                                }}
+                              >
+                                ลบ
+                              </button>
+                              <button
+                                onClick={() => handleEdit()}
+                                style={{
+                                  backgroundColor: 'yellow',
+                                  color: 'black',
+                                  borderRadius: '20px',
+                                  padding: '8px 16px',
+                                  border: 'none',
+                                  cursor: 'pointer',
+                                  outline: 'none',
+                                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.08)'
+                                }}
+                              >
+                                แก้ไข
+                              </button>
+                            </div>
+                          ) : (
+                            column.format && typeof value === 'number' ? column.format(value) : value
+                          )}
                         </TableCell>
                       );
                     })}
