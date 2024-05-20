@@ -60,6 +60,9 @@ const Navbar = () => {
                 <li className={styles.navLink}>
                     <Link href="/ArtPage">ArtPage</Link>
                 </li>
+                <li className={styles.navLink}>
+                    <Link href="/Login">Login</Link>
+                </li>
                 
             </ul>
         </nav>
