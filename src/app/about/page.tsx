@@ -142,8 +142,8 @@ export default function StickyHeadTable() {
                                 variant="contained"
                                 sx={{ 
                                   marginRight: 1, 
-                                  backgroundColor: '#E6D1F2', // สี
-                                  '&:hover': { backgroundColor: '#B19CD8' } // darker green on hover
+                                  backgroundColor: '#FDD771', // สี
+                                  '&:hover': { backgroundColor: '#FCCF55' } // darker green on hover
                                 }}
                               >
                                แก้ไข
@@ -152,8 +152,8 @@ export default function StickyHeadTable() {
                                 onClick={() => handleDelete(row.code)}
                                 variant="contained"
                                 sx={{ 
-                                  backgroundColor: '#f44336', // red
-                                  '&:hover': { backgroundColor: '#d32f2f' } // darker red on hover
+                                  backgroundColor: '#EB4343', // red
+                                  '&:hover': { backgroundColor: '#E22427' } // darker red on hover
                                 }}
                               >
                                 ลบ
