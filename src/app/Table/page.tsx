@@ -8,9 +8,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import Button from '@mui/material/Button';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 interface Column {
-  id: 'name' | 'code' | 'population' | 'size' | 'density' | 'but';
+  id: 'name' | 'code' | 'population' | 'size' | 'density' | 'actions';
   label: string;
   minWidth?: number;
   align?: 'right';
@@ -42,8 +45,9 @@ const columns: readonly Column[] = [
     align: 'right',
     format: (value: number) => value.toFixed(2),
   },
-  { id: 'but', label: 'button', minWidth: 140, align: 'center', color: '#FFFFFF' },
+  { id: 'actions', label: 'Actions', minWidth: 170, align: 'center'},
 ];
+
 
 interface Data {
   name: string;
@@ -95,20 +99,17 @@ export default function StickyHeadTable() {
     setPage(0);
   };
 
-  const handleDelete = () => {
-    // โค้ดที่ใช้ในการลบข้อมูล
-    console.log('Delete data');
+  const handleDelete = (code: string) => {
+    alert(`คุณต้องการลบหรือไม่`);
+    setRows(rows.filter((row) => row.code !== code));
   };
 
-  // ฟังก์ชันที่ใช้ในการแก้ไขข้อมูล
-  const handleEdit = () => {
-    // โค้ดที่ใช้ในการแก้ไขข้อมูล
-    console.log('Edit data');
+  const handleEdit = (code: string) => {
+    alert(`Edit row with code: ${code}`);
   };
   return (
-
-    <Paper sx={{ width: '80%', overflow: 'hidden', margin: '200px' }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
+    <Paper sx={{ width: '90%', overflow: 'hidden', margin: '5%' }}>
+      <TableContainer sx={{ maxHeight: 'calc(100vh - 150px)', overflow: 'auto' }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -118,7 +119,7 @@ export default function StickyHeadTable() {
                   align={column.align}
                   sx={{
                     minWidth: column.minWidth,
-                    backgroundColor: '#999999',
+                    backgroundColor: '#68B5F3',
                     color: column.color || '#FFFFFF',
                   }}
 
@@ -139,43 +140,46 @@ export default function StickyHeadTable() {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          {column.id === 'but' ? (
-                            <div>
-                              <button
-                                onClick={() => handleDelete()}
-                                style={{
-                                  backgroundColor: 'red',
-                                  color: 'white',
-                                  borderRadius: '20px',
-                                  padding: '8px 16px',
-                                  border: 'none',
-                                  cursor: 'pointer',
-                                  outline: 'none',
-                                  marginRight: '10px',
-                                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)'
-                                }}
-                              >
-                                ลบ
-                              </button>
-                              <button
-                                onClick={() => handleEdit()}
-                                style={{
-                                  backgroundColor: 'yellow',
-                                  color: 'black',
-                                  borderRadius: '20px',
-                                  padding: '8px 16px',
-                                  border: 'none',
-                                  cursor: 'pointer',
-                                  outline: 'none',
-                                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.08)'
-                                }}
-                              >
-                                แก้ไข
-                              </button>
-                            </div>
-                          ) : (
-                            column.format && typeof value === 'number' ? column.format(value) : value
-                          )}
+                        {column.id === 'actions' ? (
+                          <>
+                            <Button
+                              onClick={() => handleEdit(row.code)}
+                              variant="contained"
+                              sx={{ 
+                                margin: 1, 
+                                backgroundColor: '#FFFF00',
+                                color: 'black',
+                                borderRadius: 5,
+                                padding: '10px 20px',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                '&:hover': { backgroundColor: '#FFDD00' } 
+                              }}
+                              startIcon={<EditIcon />}
+                            >
+                             แก้ไข 
+                            </Button>
+                            <Button
+                              onClick={() => handleDelete(row.code)}
+                              variant="contained"
+                              sx={{ 
+                                backgroundColor: '#FF0000',
+                                borderRadius: 5,
+                                padding: '10px 20px',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                '&:hover': { backgroundColor: '#E22427' } 
+                              }}
+                              startIcon={<DeleteIcon />}
+                            >
+                              ลบ
+                            </Button>
+                          </>
+                        ) : column.format && typeof value === 'number' ? (
+                          column.format(value)
+                        ) : (
+                          value
+                        )}
                         </TableCell>
                       );
                     })}
