@@ -96,18 +96,18 @@ export default function StickyHeadTable() {
   };
 
   const handleDelete = (code: string) => {
-    alert(`คุณต้องการลบข้อมูลหรือไม่`);
+    alert(`คุณต้องการลบหรือไม่`);
     setRows(rows.filter((row) => row.code !== code));
   };
 
   const handleEdit = (code: string) => {
-    alert(`Edit row with code : ${code}`);
+    alert(`Edit row with code: ${code}`);
   };
 
   return (
-    <Paper sx={{ width: '80%', overflow: 'hidden' , margin:'10%'  }}>
-      <TableContainer sx={{ maxHeight: 'calc(100vh - 190px)',overflow:'auto' }}>
-        <Table stickyHeader aria-label="sticky table ">
+    <Paper sx={{ width: '80%', overflow: 'hidden', margin: '10%' }}>
+      <TableContainer sx={{ maxHeight: 'calc(100vh - 190px)', overflow: 'auto' }}>
+        <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               {columns.map((column) => (
@@ -117,7 +117,7 @@ export default function StickyHeadTable() {
                   sx={{
                     minWidth: column.minWidth,
                     backgroundColor: '#FF9999',
-                    color: column.color || '#333', // ใช้สีจากฟิลด์ color หรือสีเริ่มต้น #333
+                    color: column.color || '#333',
                   }}
                 >
                   {column.label}
@@ -140,15 +140,21 @@ export default function StickyHeadTable() {
                               <Button
                                 onClick={() => handleEdit(row.code)}
                                 variant="contained"
-                                color="primary"
-                                sx={{ marginRight: 1 }}
+                                sx={{ 
+                                  marginRight: 1, 
+                                  backgroundColor: '#E6D1F2', // สี
+                                  '&:hover': { backgroundColor: '#B19CD8' } // darker green on hover
+                                }}
                               >
-                                  เเก่ไข
+                               แก้ไข
                               </Button>
                               <Button
                                 onClick={() => handleDelete(row.code)}
                                 variant="contained"
-                                color="secondary"
+                                sx={{ 
+                                  backgroundColor: '#f44336', // red
+                                  '&:hover': { backgroundColor: '#d32f2f' } // darker red on hover
+                                }}
                               >
                                 ลบ
                               </Button>
