@@ -8,9 +8,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import Button from '@mui/material/Button';
 
 interface Column {
-  id: 'name' | 'code' | 'population' | 'size' | 'density';
+  id: 'name' | 'code' | 'population' | 'size' | 'density' | 'actions';
   label: string;
   minWidth?: number;
   align?: 'right';
@@ -41,6 +42,7 @@ const columns: readonly Column[] = [
     align: 'right',
     format: (value: number) => value.toFixed(2),
   },
+  { id: 'actions', label: 'Actions', minWidth: 170, align: 'right' },
 ];
 
 interface Data {
@@ -61,7 +63,7 @@ function createData(
   return { name, code, population, size, density };
 }
 
-const rows = [
+const initialRows = [
   createData('India', 'IN', 1324171354, 3287263),
   createData('China', 'CN', 1403500365, 9596961),
   createData('Italy', 'IT', 60483973, 301340),
@@ -80,6 +82,7 @@ const rows = [
 ];
 
 export default function StickyHeadTable() {
+  const [rows, setRows] = React.useState(initialRows);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -90,6 +93,15 @@ export default function StickyHeadTable() {
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
+  };
+
+  const handleDelete = (code: string) => {
+    alert(`คุณต้องการลบข้อมูลหรือไม่`);
+    setRows(rows.filter((row) => row.code !== code));
+  };
+
+  const handleEdit = (code: string) => {
+    alert(`Edit row with code : ${code}`);
   };
 
   return (
@@ -123,9 +135,29 @@ export default function StickyHeadTable() {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
+                          {column.id === 'actions' ? (
+                            <>
+                              <Button
+                                onClick={() => handleEdit(row.code)}
+                                variant="contained"
+                                color="primary"
+                                sx={{ marginRight: 1 }}
+                              >
+                                  เเก่ไข
+                              </Button>
+                              <Button
+                                onClick={() => handleDelete(row.code)}
+                                variant="contained"
+                                color="secondary"
+                              >
+                                ลบ
+                              </Button>
+                            </>
+                          ) : column.format && typeof value === 'number' ? (
+                            column.format(value)
+                          ) : (
+                            value
+                          )}
                         </TableCell>
                       );
                     })}
