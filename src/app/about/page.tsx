@@ -9,6 +9,9 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 interface Column {
   id: 'name' | 'code' | 'population' | 'size' | 'density' | 'actions';
@@ -85,6 +88,9 @@ export default function StickyHeadTable() {
   const [rows, setRows] = React.useState(initialRows);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [open, setOpen] = React.useState(false);
+  const [editRow, setEditRow] = React.useState<Data | null>(null);
+  const [isAddMode, setIsAddMode] = React.useState(false);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -96,16 +102,65 @@ export default function StickyHeadTable() {
   };
 
   const handleDelete = (code: string) => {
-    alert(`คุณต้องการลบหรือไม่`);
-    setRows(rows.filter((row) => row.code !== code));
+    if (confirm('คุณต้องการลบข้อมูลหรือไม่')) {
+      setRows(rows.filter((row) => row.code !== code));
+    }
   };
 
-  const handleEdit = (code: string) => {
-    alert(`Edit row with code: ${code}`);
+  const handleEdit = (row: Data) => {
+    setEditRow(row);
+    setIsAddMode(false);
+    setOpen(true);
+  };
+
+  const handleAdd = () => {
+    setEditRow({
+      name: '',
+      code: '',
+      population: 0,
+      size: 0,
+      density: 0,
+    });
+    setIsAddMode(true);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setEditRow(null);
+  };
+
+  const handleSave = () => {
+    if (editRow) {
+      if (isAddMode) {
+        setRows([...rows, editRow]);
+      } else {
+        setRows(rows.map((row) => (row.code === editRow.code ? editRow : row)));
+      }
+      handleClose();
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (editRow) {
+      const { name, value } = e.target;
+      const updatedRow = { ...editRow, [name]: value };
+      if (name === 'population' || name === 'size') {
+        const population = name === 'population' ? Number(value) : editRow.population;
+        const size = name === 'size' ? Number(value) : editRow.size;
+        updatedRow.density = size > 0 ? population / size : 0;
+      }
+      setEditRow(updatedRow);
+    }
   };
 
   return (
     <Paper sx={{ width: '80%', overflow: 'hidden', margin: '10%' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 2 }}>
+        <Button onClick={handleAdd} variant="contained" color="primary">
+          Add
+        </Button>
+      </Box>
       <TableContainer sx={{ maxHeight: 'calc(100vh - 190px)', overflow: 'auto' }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -138,7 +193,7 @@ export default function StickyHeadTable() {
                           {column.id === 'actions' ? (
                             <>
                               <Button
-                                onClick={() => handleEdit(row.code)}
+                                onClick={() => handleEdit(row)}
                                 variant="contained"
                                 sx={{ 
                                   marginRight: 1, 
@@ -146,7 +201,7 @@ export default function StickyHeadTable() {
                                   '&:hover': { backgroundColor: '#FCCF55' } // darker green on hover
                                 }}
                               >
-                               แก้ไข
+                                เเก่ไข
                               </Button>
                               <Button
                                 onClick={() => handleDelete(row.code)}
@@ -182,6 +237,18 @@ export default function StickyHeadTable() {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+      <Modal open={open} onClose={handleClose}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, p: 3, bgcolor: 'background.paper', margin: 'auto', top: '50%', left: '50%', position: 'absolute', transform: 'translate(-50%, -50%)', boxShadow: 24 }}>
+          <TextField label="Name" name="name" value={editRow?.name || ''} onChange={handleChange} />
+          <TextField label="ISO Code" name="code" value={editRow?.code || ''} onChange={handleChange} disabled={!isAddMode} />
+          <TextField label="Population" name="population" type="number" value={editRow?.population || ''} onChange={handleChange} />
+          <TextField label="Size (km²)" name="size" type="number" value={editRow?.size || ''} onChange={handleChange} />
+          <TextField label="Density" name="density" type="number" value={editRow?.density.toFixed(2) || ''} onChange={handleChange} disabled />
+          <Button onClick={handleSave} variant="contained" color="primary">
+            Save
+          </Button>
+        </Box>
+      </Modal>
     </Paper>
   );
 }
