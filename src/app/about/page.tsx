@@ -195,15 +195,21 @@ export default function StickyHeadTable() {
                               <Button
                                 onClick={() => handleEdit(row)}
                                 variant="contained"
-                                color="primary"
-                                sx={{ marginRight: 1 }}
+                                sx={{ 
+                                  marginRight: 1, 
+                                  backgroundColor: '#FDD771', // สี
+                                  '&:hover': { backgroundColor: '#FCCF55' } // darker green on hover
+                                }}
                               >
                                 เเก่ไข
                               </Button>
                               <Button
                                 onClick={() => handleDelete(row.code)}
                                 variant="contained"
-                                color="secondary"
+                                sx={{ 
+                                  backgroundColor: '#EB4343', // red
+                                  '&:hover': { backgroundColor: '#E22427' } // darker red on hover
+                                }}
                               >
                                 ลบ
                               </Button>

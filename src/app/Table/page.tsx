@@ -8,9 +8,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import Button from '@mui/material/Button';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 interface Column {
-  id: 'name' | 'code' | 'population' | 'size' | 'density' | 'but';
+  id: 'name' | 'code' | 'population' | 'size' | 'density' | 'actions';
   label: string;
   minWidth?: number;
   align?: 'right';
@@ -42,8 +45,9 @@ const columns: readonly Column[] = [
     align: 'right',
     format: (value: number) => value.toFixed(2),
   },
-  { id: 'but', label: 'button', minWidth: 140, color: '#FFFFFF' },
+  { id: 'actions', label: 'Actions', minWidth: 170, align: 'center'},
 ];
+
 
 interface Data {
   name: string;
@@ -62,6 +66,7 @@ function createData(
   const density = population / size;
   return { name, code, population, size, density };
 }
+
 
 const rows = [
   createData('India', 'IN', 1324171354, 3287263),
@@ -82,21 +87,29 @@ const rows = [
 ];
 
 export default function StickyHeadTable() {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  
-    const handleChangePage = (event: unknown, newPage: number) => {
-      setPage(newPage);
-    };
-  
-    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setRowsPerPage(+event.target.value);
-      setPage(0);
-    };
-  
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
+  const handleDelete = (code: string) => {
+    alert(`คุณต้องการลบหรือไม่`);
+    setRows(rows.filter((row) => row.code !== code));
+  };
+
+  const handleEdit = (code: string) => {
+    alert(`Edit row with code: ${code}`);
+  };
   return (
-    <Paper sx={{ width: '80%', overflow: 'hidden' , margin: '200px'}}>
-      <TableContainer sx={{ maxHeight: 440 }}>
+    <Paper sx={{ width: '90%', overflow: 'hidden', margin: '5%' }}>
+      <TableContainer sx={{ maxHeight: 'calc(100vh - 150px)', overflow: 'auto' }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -106,12 +119,12 @@ export default function StickyHeadTable() {
                   align={column.align}
                   sx={{
                     minWidth: column.minWidth,
-                    backgroundColor: '#999999',
-                    color: column.color || '#FFFFFF', 
+                    backgroundColor: '#68B5F3',
+                    color: column.color || '#FFFFFF',
                   }}
-                  
+
                 >
-                    
+
                   {column.label}
                 </TableCell>
               ))}
@@ -127,10 +140,46 @@ export default function StickyHeadTable() {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                            
+                        {column.id === 'actions' ? (
+                          <>
+                            <Button
+                              onClick={() => handleEdit(row.code)}
+                              variant="contained"
+                              sx={{ 
+                                margin: 1, 
+                                backgroundColor: '#FFFF00',
+                                color: 'black',
+                                borderRadius: 5,
+                                padding: '10px 20px',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                '&:hover': { backgroundColor: '#FFDD00' } 
+                              }}
+                              startIcon={<EditIcon />}
+                            >
+                             แก้ไข 
+                            </Button>
+                            <Button
+                              onClick={() => handleDelete(row.code)}
+                              variant="contained"
+                              sx={{ 
+                                backgroundColor: '#FF0000',
+                                borderRadius: 5,
+                                padding: '10px 20px',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                '&:hover': { backgroundColor: '#E22427' } 
+                              }}
+                              startIcon={<DeleteIcon />}
+                            >
+                              ลบ
+                            </Button>
+                          </>
+                        ) : column.format && typeof value === 'number' ? (
+                          column.format(value)
+                        ) : (
+                          value
+                        )}
                         </TableCell>
                       );
                     })}
