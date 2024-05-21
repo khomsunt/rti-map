@@ -27,7 +27,6 @@ const navItems = [
   { menu: 'About', href: "/about" },
   { menu: 'Contact', href: "/contact" },
   { menu: "seem", href: "/seem" },
-  { menu: "table", href: "/table" },
   { menu: "Artpage", href: "/ArtPage" },
 ];
 
