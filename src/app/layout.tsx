@@ -1,9 +1,9 @@
+// src/app/layout.tsx
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-// import Navbar from "./navbar/page";
 import DrawerAppBar from "./muiNavbar/page";
-// import Navbar from "./gptNavbar/page";
+import { AuthProvider } from "./context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,9 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <DrawerAppBar />
-        <div className="mt-14">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );
