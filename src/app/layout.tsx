@@ -21,7 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <DrawerAppBar />
-        {children}
+        <div className="mt-14">
+          {children}
+        </div>
       </body>
     </html>
   );
