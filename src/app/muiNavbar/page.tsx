@@ -21,15 +21,8 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = [
-  { menu: 'Home', href: "/" },
-  { menu: 'Map', href: "/map" },
-  { menu: 'About', href: "/about" },
-  { menu: 'Contact', href: "/contact" },
-  { menu: "seem", href: "/seem" },
-  { menu: "table", href: "/table" },
-  { menu: "Artpage", href: "/ArtPage" },
-];
+const navItems = [{ menu: 'Home', href: "/" }, { menu: 'Map', href: "/map" }, { menu: 'About', href: "/about" }, { menu: 'Contact', href: "/contact" }, { menu: "seem", href: "/seem" }, { menu: "Artpage", href: "/ArtPage" }];
+
 
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
@@ -96,25 +89,25 @@ export default function DrawerAppBar(props: Props) {
           >
             MUI
           </Typography>
-         <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-  {navItems.map((item) => (
-    <Button key={item.menu} sx={{ color: '#fff' }}>
-      <Link href={item.href}>{item.menu}</Link>
-    </Button>
-  ))}
-  {user ? (
-    <>
-      <Typography variant="body1" sx={{ color: '#fff', marginRight: '15px' }}>
-        Welcome, {user} {/* แสดงชื่อผู้ใช้ */}
-      </Typography>
-      <Button sx={{ color: '#fff' }} onClick={handleLogout}>Logout</Button>
-    </>
-  ) : (
-    <Button sx={{ color: '#fff' }}>
-      <Link href="/component">Login</Link>
-    </Button>
-  )}
-</Box>
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            {navItems.map((item) => (
+              <Button key={item.menu} sx={{ color: '#fff' }}>
+                <Link href={item.href}>{item.menu}</Link>
+              </Button>
+            ))}
+            {user ? (
+              <>
+                <Typography variant="body1" sx={{ color: '#fff', marginRight: '15px' }}>
+                  Welcome, {user} {/* แสดงชื่อผู้ใช้ */}
+                </Typography>
+                <Button sx={{ color: '#fff' }} onClick={handleLogout}>Logout</Button>
+              </>
+            ) : (
+              <Button sx={{ color: '#fff' }}>
+                <Link href="/component">Login</Link>
+              </Button>
+            )}
+          </Box>
 
         </Toolbar>
       </AppBar>
