@@ -14,7 +14,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Link from 'next/link';
-import { useAuth } from '../context/AuthContext';
+// import { useAuth } from '../context/AuthContext';
 
 interface Props {
   window?: () => Window;
@@ -27,15 +27,15 @@ const navItems = [{ menu: 'Home', href: "/" }, { menu: 'Map', href: "/map" }, { 
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const { user, logout } = useAuth();
+  // const { user, logout } = useAuth();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
-  };
+  }; // const handleLogout = () => {
+  //   logout(); // นี่คือฟังก์ชันที่ต้องการสำหรับการ logout และล้างข้อมูลผู้ใช้
+  // };
 
-  const handleLogout = () => {
-    logout(); // นี่คือฟังก์ชันที่ต้องการสำหรับการ logout และล้างข้อมูลผู้ใช้
-  };
+ 
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
@@ -53,7 +53,7 @@ export default function DrawerAppBar(props: Props) {
             </Link>
           </ListItem>
         ))}
-        {!user && (
+        {/* {!user && (
           <ListItem disablePadding>
             <Link href="/component" className='w-screen'>
               <ListItemButton sx={{ textAlign: 'center' }}>
@@ -61,7 +61,7 @@ export default function DrawerAppBar(props: Props) {
               </ListItemButton>
             </Link>
           </ListItem>
-        )}
+        )} */}
       </List>
     </Box>
   );
@@ -95,18 +95,7 @@ export default function DrawerAppBar(props: Props) {
                 <Link href={item.href}>{item.menu}</Link>
               </Button>
             ))}
-            {user ? (
-              <>
-                <Typography variant="body1" sx={{ color: '#fff', marginRight: '15px' }}>
-                  Welcome, {user} {/* แสดงชื่อผู้ใช้ */}
-                </Typography>
-                <Button sx={{ color: '#fff' }} onClick={handleLogout}>Logout</Button>
-              </>
-            ) : (
-              <Button sx={{ color: '#fff' }}>
-                <Link href="/component">Login</Link>
-              </Button>
-            )}
+            
           </Box>
 
         </Toolbar>
