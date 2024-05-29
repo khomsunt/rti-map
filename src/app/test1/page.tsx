@@ -10,12 +10,18 @@ const LoginForm = () => {
         ]
     });
 
+    const [formData, setFormData] = useState({
+        username: '',
+        password: '',
+        selectField: ''
+    });
+
     const [selectedOption, setSelectedOption] = useState('');
 
     const handleChange = (e) => {
         const { id, value } = e.target;
-        setForm(prevForm => ({
-            ...prevForm,
+        setFormData(prevFormData => ({
+            ...prevFormData,
             [id]: value
         }));
 
@@ -24,7 +30,28 @@ const LoginForm = () => {
         }
     };
 
-    const renderSwitch(param) {
+    const renderInput = (inputType, id, options) => {
+        if (inputType === 'select') {
+            return (
+                <select id={id} value={formData[id]} onChange={handleChange} className="border border-gray-300 rounded-md py-2 px-4 text-gray-700 leading-tight focus:outline-none">
+                    <option value="">Select an option</option>
+                    {options.map((option, index) => (
+                        <option key={index} value={option}>{option}</option>
+                    ))}
+                </select>
+            );
+        } else {
+            return (
+                <input
+                    id={id}
+                    type={inputType}
+                    value={formData[id]}
+                    onChange={handleChange}
+                    className="border border-gray-300 rounded-md py-2 px-4 text-gray-700 leading-tight focus:outline-none"
+                />
+            );
+        }
+    };
 
     let displayComponent;
 
@@ -46,16 +73,13 @@ const LoginForm = () => {
         <div className="max-w-md mx-auto bg-white rounded-lg">
             <form className='border border-gray-300 rounded-md py-2 px-4 text-gray-700 leading-tight focus:outline-none mt-20 shadow-lg'>
                 <div className='py-5'>
-                    <div className=''>
+                    <div>
                         {
                             form.Form.map((row, index) => (
                                 <div key={index} className="mb-4">
                                     <label className='block mb-2'>{row.label}</label>
-                                    {renderSwitch(row.inputType)}
-
-
+                                    {renderInput(row.inputType, row.ID, row.options)}
                                 </div>
-
                             ))
                         }
                     </div>
@@ -64,13 +88,10 @@ const LoginForm = () => {
                     </div>
                     <div className="form-control mt-5">
                         <label className="cursor-pointer label">
-                            <span className="label-text">checkbox</span>
+                            <span className="label-text">Checkbox</span>
                             <input type="checkbox" defaultChecked className="checkbox checkbox-secondary" />
                         </label>
                     </div>
-
-
-
                 </div>
             </form>
         </div>
